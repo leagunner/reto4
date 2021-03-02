@@ -31,9 +31,14 @@ let botonJugar = document.getElementById("boton-jugar")
 let jugador1 = document.getElementById("jugador-1")
 let jugador2 = document.getElementById("jugador-2")
 
+
 botonJugar.addEventListener("click",function(){
     let nombreJugador1 = jugador1.value
     let nombreJugador2 = jugador2.value
     pantallaPrincipal.style.display = "none"
-    //pantallaAnimacion.style.display = "block"
+    pantallaAnimacion.style.display = "block"
+    setTimeout(function(){
+        pantallaAnimacion.style.display = "none"
+        pantallaCartas.style.display = "block"
+    }, 3000)
 })
