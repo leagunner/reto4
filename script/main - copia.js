@@ -24,7 +24,6 @@ let descripcionCarta = ["Si no lo veo no es ilegal esa es la filosofía de este 
 //Pantallas
 let pantallaPrincipal = document.getElementById("pantalla-principal")
 let pantallaAnimacion = document.getElementById("pantalla-animacion")
-let pantallaAnimacionHistorial = document.getElementById("pantalla-animacion-historial")
 let pantallaCartas = document.getElementById("pantalla-cartas")
 let pantallaResultados = document.getElementById("pantalla-resultados")
 let resultadosJugador1= document.getElementById("resultados-jugador1")
@@ -49,11 +48,8 @@ let contenedorCarta4 = document.getElementById("contenedor-carta4")
 let contenedorCarta5 = document.getElementById("contenedor-carta5")
 let contenedorCarta6 = document.getElementById("contenedor-carta6")
 
-
-
-botonJugar.addEventListener("click",function(){
-    let numeros=[]
-    function numerosAleatoriosNoRepetidos(min, max, cantidad) {
+let numeros=[]
+function numerosAleatoriosNoRepetidos(min, max, cantidad) {
     if (min>max || cantidad>max-min) {
         return false;
     }
@@ -65,6 +61,8 @@ botonJugar.addEventListener("click",function(){
     }
     return numeros;
 }
+
+botonJugar.addEventListener("click",function(){
     numerosAleatoriosNoRepetidos(0,20,6)
     let nombreJugador1 = jugador1.value
     let nombreJugador2 = jugador2.value
@@ -82,25 +80,21 @@ botonJugar.addEventListener("click",function(){
     let carta4 = numeros[3]
     let carta5 = numeros[4]
     let carta6 = numeros[5]
-    contenedorCarta1.innerHTML = `<p>Carta 1/3 de ${nombreJugador1}</p> <h1>${cartas[carta1]}</h1> <h3>${tituloCarta[carta1]}</h3> <p>${descripcionCarta[carta1]}</p>`
-    contenedorCarta2.innerHTML = `<p>Carta 2/3 de ${nombreJugador1}</p> <h1>${cartas[carta2]}</h1> <h3>${tituloCarta[carta2]}</h3> <p>${descripcionCarta[carta2]}</p>`
-    contenedorCarta3.innerHTML = `<p>Carta 3/3 de ${nombreJugador1}</p> <h1>${cartas[carta3]}</h1> <h3>${tituloCarta[carta3]}</h3> <p>${descripcionCarta[carta3]}</p>`
-    contenedorCarta4.innerHTML = `<p>Carta 1/3 de ${nombreJugador2}</p> <h1>${cartas[carta4]}</h1> <h3>${tituloCarta[carta4]}</h3> <p>${descripcionCarta[carta4]}</p>`
-    contenedorCarta5.innerHTML = `<p>Carta 2/3 de ${nombreJugador2}</p> <h1>${cartas[carta5]}</h1> <h3>${tituloCarta[carta5]}</h3> <p>${descripcionCarta[carta5]}</p>`
-    contenedorCarta6.innerHTML = `<p>Carta 3/3 de ${nombreJugador2}</p> <h1>${cartas[carta6]}</h1> <h3>${tituloCarta[carta6]}</h3> <p>${descripcionCarta[carta6]}</p>`
+    contenedorCarta1.innerHTML = `<p>Carta 1/6 de ${nombreJugador1}</p> <h1>${cartas[carta1]}</h1> <h3>${tituloCarta[carta1]}</h3> <p>${descripcionCarta[carta1]}</p>`
+    contenedorCarta2.innerHTML = `<p>Carta 2/6 de ${nombreJugador1}</p> <h1>${cartas[carta2]}</h1> <h3>${tituloCarta[carta2]}</h3> <p>${descripcionCarta[carta2]}</p>`
+    contenedorCarta3.innerHTML = `<p>Carta 3/6 de ${nombreJugador1}</p> <h1>${cartas[carta3]}</h1> <h3>${tituloCarta[carta3]}</h3> <p>${descripcionCarta[carta3]}</p>`
+    contenedorCarta4.innerHTML = `<p>Carta 4/6 de ${nombreJugador2}</p> <h1>${cartas[carta4]}</h1> <h3>${tituloCarta[carta4]}</h3> <p>${descripcionCarta[carta4]}</p>`
+    contenedorCarta5.innerHTML = `<p>Carta 5/6 de ${nombreJugador2}</p> <h1>${cartas[carta5]}</h1> <h3>${tituloCarta[carta5]}</h3> <p>${descripcionCarta[carta5]}</p>`
+    contenedorCarta6.innerHTML = `<p>Carta 6/6 de ${nombreJugador2}</p> <h1>${cartas[carta6]}</h1> <h3>${tituloCarta[carta6]}</h3> <p>${descripcionCarta[carta6]}</p>`
     botonGuardarPartida.addEventListener("click",function(){
         pantallaResultados.style.display = "none"
         pantallaPrincipal.style.display = "block"
         pantallaHistorial.style.display = "block"
         jugador1.value = ""
         jugador2.value = ""
-        Objeto = {
-            cartasj1: [carta1, carta2, carta3],
-            cartasj2: [carta4, carta5, carta6],
-            nombrej1: nombreJugador1,
-            nombrej2: nombreJugador2,
-        }
-        let modelo = `${nombreJugador1} y ${nombreJugador2} <img src="images/chulardi.png" class="chulito" nombrej1="${nombreJugador1}" nombrej2="${nombreJugador2}"carta1="${carta1}" carta2="${carta2}" carta3="${carta3}" carta4="${carta4}" carta5="${carta5}" carta6="${carta6}"><br>`
+        partidaJugador1 = [carta1,carta2,carta3]
+        partidaJugador2 = [carta4,carta5,carta6]
+        let modelo = `Partida de ${nombreJugador1} y ${nombreJugador2} <img src="images/chulardi.png" class="chulito" nombrej1="${nombreJugador1}" nombrej2="${nombreJugador2}"carta1="${carta1}" carta2="${carta2}" carta3="${carta3}" carta4="${carta4}" carta5="${carta5}" carta6="${carta6}"><br>`
         pantallaHistorial.innerHTML += modelo
     })
     botonVolverATirar.addEventListener("click",function(){
@@ -112,14 +106,13 @@ botonJugar.addEventListener("click",function(){
     botonVerResultados.addEventListener("click",function(){
         pantallaCartas.style.display = "none"
         pantallaResultados.style.display ="block"
-        botonGuardarPartida.style.display = "inline-block"
         resultadosJugador1.innerHTML = `<h1>${nombreJugador1}<h1/> <h3>${cartas[carta1]+cartas[carta2]+cartas[carta3]}</h3>`
         resultadosJugador2.innerHTML = `<h1>${nombreJugador2}<h1/> <h3>${cartas[carta4]+cartas[carta5]+cartas[carta6]}</h3>`
         let sumasCartasJ1 = carta1+carta2+carta3
         let sumasCartasJ2 = carta4+carta5+carta6
         if(sumasCartasJ1 % 2 == sumasCartasJ2 % 2){
-            resultadoMatch.innerHTML = `❤️<br><p>${nombreJugador1} y ${nombreJugador2} matchearon</p>` 
-        }else{resultadoMatch.innerHTML = `💔<br><p>${nombreJugador1} y ${nombreJugador2} no matchearon</p>` }
+            resultadoMatch.innerHTML = `<p>${nombreJugador1} y ${nombreJugador2} matchearon</p>` 
+        }else{resultadoMatch.innerHTML = `<p>${nombreJugador1} y ${nombreJugador2} no matchearon</p>` }
         botonCerrarResultados.addEventListener("click",function(){
             pantallaResultados.style.display = "none"
             pantallaPrincipal.style.display = "block"
@@ -136,29 +129,25 @@ botonJugar.addEventListener("click",function(){
         document.addEventListener("click",function(e){
             if (e.target.className == "chulito"){
                 pantallaPrincipal.style.display = "none"
-                pantallaAnimacionHistorial.style.display = "block"
+                pantallaAnimacion.style.display = "block"
                 setTimeout(function(){
-                pantallaAnimacionHistorial.style.display = "none"
-                pantallaResultados.style.display = "block"
-                botonGuardarPartida.style.display = "none"
+                pantallaAnimacion.style.display = "none"
+                pantallaCartas.style.display = "block"
             }, 3000)
-            let player1 = e.target.getAttribute("nombrej1")
-            let player2 = e.target.getAttribute("nombrej2")
-            let card1 = e.target.getAttribute("carta1")
-            let card2 = e.target.getAttribute("carta2")
-            let card3 = e.target.getAttribute("carta3")
-            let card4 = e.target.getAttribute("carta4")
-            let card5 = e.target.getAttribute("carta5")
-            let card6 = e.target.getAttribute("carta6")
-            resultadosJugador1.innerHTML = `<h1>${player1}<h1/> <h3>${cartas[card1]+cartas[card2]+cartas[card3]}</h3>`
-            resultadosJugador2.innerHTML = `<h1>${player2}<h1/> <h3>${cartas[card4]+cartas[card5]+cartas[card6]}</h3>`
-            contenedorCarta1.innerHTML = `<p>Carta 1/6 de ${player1}</p> <h1>${cartas[card1]}</h1> <h3>${tituloCarta[card1]}</h3> <p>${descripcionCarta[card1]}</p>`
-            contenedorCarta2.innerHTML = `<p>Carta 2/6 de ${player1}</p> <h1>${cartas[card2]}</h1> <h3>${tituloCarta[card2]}</h3> <p>${descripcionCarta[card2]}</p>`
-            contenedorCarta3.innerHTML = `<p>Carta 3/6 de ${player1}</p> <h1>${cartas[card3]}</h1> <h3>${tituloCarta[card3]}</h3> <p>${descripcionCarta[card3]}</p>`
-            contenedorCarta4.innerHTML = `<p>Carta 4/6 de ${player2}</p> <h1>${cartas[card4]}</h1> <h3>${tituloCarta[card4]}</h3> <p>${descripcionCarta[card4]}</p>`
-            contenedorCarta5.innerHTML = `<p>Carta 5/6 de ${player2}</p> <h1>${cartas[card5]}</h1> <h3>${tituloCarta[card5]}</h3> <p>${descripcionCarta[card5]}</p>`
-            contenedorCarta6.innerHTML = `<p>Carta 6/6 de ${player2}</p> <h1>${cartas[card6]}</h1> <h3>${tituloCarta[card6]}</h3> <p>${descripcionCarta[card6]}</p>`
-        }
+            // let player1 = e.target.getAttribute("nombrej1")
+            // let player2 = e.target.getAttribute("nombrej2")
+            // let card1 = e.target.getAttribute("carta1")
+            // let card2 = e.target.getAttribute("carta2")
+            // let card3 = e.target.getAttribute("carta3")
+            // let card4 = e.target.getAttribute("carta4")
+            // let card5 = e.target.getAttribute("carta5")
+            // let card6 = e.target.getAttribute("carta6")
+         }//contenedorCarta1.innerHTML = `<p>Carta 1/6 de ${player1}</p> <h1>${cartas[card1]}</h1> <h3>${tituloCarta[card1]}</h3> <p>${descripcionCarta[card1]}</p>`
+        // contenedorCarta2.innerHTML = `<p>Carta 2/6 de ${player1}</p> <h1>${cartas[card2]}</h1> <h3>${tituloCarta[card2]}</h3> <p>${descripcionCarta[card2]}</p>`
+        // contenedorCarta3.innerHTML = `<p>Carta 3/6 de ${player1}</p> <h1>${cartas[card3]}</h1> <h3>${tituloCarta[card3]}</h3> <p>${descripcionCarta[card3]}</p>`
+        // contenedorCarta4.innerHTML = `<p>Carta 4/6 de ${player2}</p> <h1>${cartas[card4]}</h1> <h3>${tituloCarta[card4]}</h3> <p>${descripcionCarta[card4]}</p>`
+        // contenedorCarta5.innerHTML = `<p>Carta 5/6 de ${player2}</p> <h1>${cartas[card5]}</h1> <h3>${tituloCarta[card5]}</h3> <p>${descripcionCarta[card5]}</p>`
+        // contenedorCarta6.innerHTML = `<p>Carta 6/6 de ${player2}</p> <h1>${cartas[card6]}</h1> <h3>${tituloCarta[card6]}</h3> <p>${descripcionCarta[card6]}</p>`
         })
     })
     }else{

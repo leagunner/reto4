@@ -1,0 +1,11 @@
+#boton-cerrar{
+    background: none;
+    border-color: white;
+}
+#boton-cerrar:hover{
+    border-color: white;
+
+}
+#boton-cerrar:active{
+    border-color: white;
+}

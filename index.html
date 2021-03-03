@@ -5,26 +5,104 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="stylr.css">
 </head>
 <body>
     <section id="pantalla-principal">
-        <h1>El juego de cartas de mierda</h1>
-        <p>Jugador 1</p>
-        <input type="text" id="jugador-1" placeholder="Nombre">
-        <p>jugador 2</p>
-        <input type="text" id="jugador-2" placeholder="Nombre">
+        <h1>Un juego de cartas de mierda</h1>
+        <p>Jugador 1
+        <input type="text" id="jugador-1" placeholder="Nombre"></p>
+        <p>Jugador 2
+        <input type="text" id="jugador-2" placeholder="Nombre"></p>
         <button type="button" id="boton-jugar">Jugar</button>
-        
+        <div id="pantalla-historial">
+            <h3>Partidas guardadas:</h3>
+        </div>
     </section>
     <div id="pantalla-animacion">
+        <p>Mezclando... ¡Ay el azar el azar el azar!</p>
         <div class="cargando"></div>
     </div>
-    <section id="pantalla-cartas">asdasdasdas</section>
-    <section id="pantalla-resultados">
-        ggggggggggg
+    <div id="pantalla-animacion-historial">
+        <p>Volviendo atras en el tiempo fiiuuusshhhh</p>
+        <div class="cargando"></div>
+    </div>
+    <section id="pantalla-cartas">
+        <a href="#" id="boton-cerrar" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal"><img class="boton-cerrar"src="/images/cerrar.png" alt="cerrar"></a> <br> <br>
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true"  data-bs-interval="false">
+            
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                <div class="d-block w-100" id="contenedor-carta1">
+                    
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-block w-100" id="contenedor-carta2">
+                    
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-block w-100" id="contenedor-carta3">
+                    
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-block w-100" id="contenedor-carta4">
+                    
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-block w-100" id="contenedor-carta5">
+                    
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-block w-100" id="contenedor-carta6">
+                    
+                </div>
+            </div>
+            </div>
+            <button class="carousel-control-prev"  data-bs-target="#carouselExampleIndicators"  data-bs-slide="prev"></button>
+            <button class="carousel-control-next"  data-bs-target="#carouselExampleIndicators"  data-bs-slide="next"></button>
+        </div>
+            <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">¿Que vas a hacer crack?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                Una dificil desición... a partir de acà se deciden sus destinos, o quizás quieran cambiarlo pero...  ¿Si cambian sus destinos entonces el mismo no era tal? Mmm que parandonga ¿No?
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="volver-a-tirar" data-bs-dismiss="modal">Volver a tirar</button>
+                <button type="button" class="btn btn-primary" id="ver-resultados" data-bs-dismiss="modal">Ver resultados</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
     </section>
-    <section id="pantalla-match"></section>
+    <section id="pantalla-resultados">
+        <a href="#" id="boton-cerrar-resultados"><img class="boton-cerrar" src="/images/cerrar.png" alt="cerrar"></a>
+        <div id="resultados-jugador1"></div>
+        <div id="resultados-jugador2"></div>
+        <div id="resultado-match"></div>
+        <button type="button" class="btn btn-primary" id="boton-guardar-partida">Guardar partida</button>
+        <button type="button" class="btn btn-primary" id="boton-salir">Salir</button>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <script src="script/main.js"></script>
 </body>
 </html>
